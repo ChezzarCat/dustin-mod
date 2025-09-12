@@ -18,9 +18,9 @@ function finishDustin() {
     script.destroy();
     if (dustCall != null) dustCall();
 
-    if (name == "assets/videos/The-Uprising-end-cutscene.mp4")
+    if (name == "assets/videos/the-uprising-end-cutscene.mp4")
         FlxG.switchState(new ModState("EndingCredits", "genocide"));
 
-    if (name == "assets/videos/You-Are-end-cutscene.mp4")
+    if (name == "assets/videos/you-are-end-cutscene.mp4")
         FlxG.switchState(new ModState("EndingCredits", "pacifist"));
 }

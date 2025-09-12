@@ -158,7 +158,7 @@ function selectWeek() {
         i++;
     }
 
-    if (playList[0] == "The-Uprising") playList.pop(); // Remove "You Are"
+    if (playList[0] == "the-uprising") playList.pop(); // Remove "You Are"
 
     PlayState.loadWeek(data[0], data[0].difficulties[0]);
     PlayState.storyPlaylist = playList;
