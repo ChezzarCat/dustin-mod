@@ -87,11 +87,13 @@ function update(elapsed:Float):Void {
         openSubState(new EditorPicker());
     }
 
-    if (Options.devMode && controls.SWITCHMOD) {
+    #if !DUSTIN_CUSTOM_BUILD
+    if (controls.SWITCHMOD) {
         openSubState(new ModSwitchMenu());
         persistentUpdate = false;
         persistentDraw = true;
     }
+    #end
 
     FlxG.camera.scroll.x = lerp(FlxG.camera.scroll.x, FlxSimplex.simplex(Conductor.songPosition / 3000, 0) * 4, 0.05);
     FlxG.camera.scroll.y = lerp(FlxG.camera.scroll.y, FlxSimplex.simplex(Conductor.songPosition / 3000, 1) * 4 + 2 * curSelected, 0.05);
