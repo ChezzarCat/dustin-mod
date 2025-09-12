@@ -75,7 +75,7 @@ function postCreate() {
 
     if(iconText == null) return;
     iconText.cameras = [camHUD]; hudElements.push(iconText);
-    genocides.cameras = [camHUD]; 
+    genocides.cameras = [camHUD];
     iconText.animation.play(_lastAnim = dad.getAnimName());
 
     insert(members.indexOf(iconText), textBG = newDialogueBoxBG(20, 20, null, (iconText.width + FlxG.width * 2) * iconText.scale.x, (iconText.height + FlxG.height / 1.6) * iconText.scale.y, 5));

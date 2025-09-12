@@ -56,6 +56,7 @@ function create() {
         portrait.x = FlxG.width * 0.75 - portrait.width / 2;
         portrait.scrollFactor.set();
         portrait.ID = i;
+        portrait.antialiasing = Options.antialiasing;
         portraits.push(portrait);
         portrait.y = portrait.y + 3;
         add(portrait);
@@ -108,9 +109,9 @@ function create() {
     oldstatic = new CustomShader("static");
     oldstatic.time = 0; oldstatic.strength = 5;
     if (Options.gameplayShaders && FlxG.save.data.static) tvScreen.addShader(oldstatic);
-    FlxG.cameras.remove(FlxG.camera, false); 
-    FlxG.cameras.add(tvScreen, false); 
-    FlxG.cameras.add(FlxG.camera, true); 
+    FlxG.cameras.remove(FlxG.camera, false);
+    FlxG.cameras.add(tvScreen, false);
+    FlxG.cameras.add(FlxG.camera, true);
 
     tape_noise = new CustomShader("tapenoise");
     tape_noise.res = [FlxG.width, FlxG.height];
@@ -335,7 +336,7 @@ var prevSelected = 0;
 function changeSelection(amt:Int, force:Bool = false) {
     prevSelected = curSelected;
     curSelected = force ? amt : FlxMath.wrap(curSelected + amt, 0, boxes.length - 1);
-    
+
     if (prevSelected != curSelected) {
         FlxG.sound.play(Paths.sound("menu/scroll"), 0.5);
 

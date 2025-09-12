@@ -54,6 +54,9 @@ function update(elapsed:Float) {
         FlxG.camera.visible = false;
         goToTitle();
     }
+
+    if (FlxG.keys.justPressed.F)
+        FlxG.fullscreen = !FlxG.fullscreen;
 }
 
 function destroy() {

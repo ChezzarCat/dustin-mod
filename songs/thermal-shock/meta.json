@@ -1,7 +1,7 @@
 {
 	"opponentModeAllowed": false,
 	"difficulties": [
-		"HARD"
+		"hard"
 	],
 	"icon": "face",
 	"coopAllowed": false,

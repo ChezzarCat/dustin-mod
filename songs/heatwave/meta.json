@@ -5,7 +5,7 @@
 	],
 	"icon": "face",
 	"coopAllowed": true,
-	"name": "Heatwave",
+	"name": "heatwave",
 	"color": "#950B0B",
 	"customValues": {
 		"customName": "heAtwave",

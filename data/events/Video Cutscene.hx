@@ -1,4 +1,4 @@
-// 
+//
 import hxvlc.flixel.FlxVideoSprite;
 import haxe.MainLoop;
 
@@ -26,7 +26,7 @@ function create() {
             vid.cameras = [videoCam]; vid.antialiasing = Options.antialiasing; vid.visible = false;
 
             vid.bitmap.onEndReached.add(function () {
-                vid.visible = false; 
+                vid.visible = false;
                 remove(vid);
                 vid.destroy();
             });

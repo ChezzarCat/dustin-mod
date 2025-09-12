@@ -1,8 +1,8 @@
 {
 	"color": "#9271FD",
 	"customValues": {
-		"customName": "red demon o",
-		"titleCardSubtext": "* by Mar Mar",
+		"customName": "red demon O",
+		"titleCardSubtext": "* by Mar Mar\n* Original by Shiina Mota",
 		"character": "overthrone",
 		"mainColor": "#FFFFFF",
 		"stats": "* SANS 58 ATK 15 DEF\n* The demon in red.\n* Burned everyone to ashes."
@@ -10,7 +10,7 @@
 	"opponentModeAllowed": false,
 	"icon": "face",
 	"difficulties": [
-		"HARD"
+		"hard"
 	],
 	"coopAllowed": false,
 	"stepsPerBeat": 4,

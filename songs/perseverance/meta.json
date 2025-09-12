@@ -20,7 +20,7 @@
 		"stats": "* SANS 31 ATK 26 DEF\n* He is not ready yet.\n* Something is familiar about him.",
 		"titleCardSubtext": "* by Chezzar/pause(0.5)/\n* ft. Mar Mar"
 	},
-	"name": "Perseverance",
+	"name": "perseverance",
 	"coopAllowed": false,
 	"stepsPerBeat": 4,
 	"displayName": "Perseverance",

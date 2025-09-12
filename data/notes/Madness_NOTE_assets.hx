@@ -1,15 +1,17 @@
 //
-function onNoteCreation(event:NoteCreationEvent) {
-    if (!FlxG.save.data.mechanics && event.note.noteType == "Madness_NOTE_assets") {
+function onNoteCreation(event:NoteCreationEvent) if (event.note.noteType == "Madness_NOTE_assets") {
+    if (!FlxG.save.data.mechanics) {
         event.note.strumTime -= 999999;
         event.note.exists = event.note.active = event.note.visible = false;
         return;
     }
+
+    event.note.avoid = true;
 }
 
 function onPlayerMiss(event) {
     if (event.noteType == "Madness_NOTE_assets") {
-        event.cancel(true); 
+        event.cancel(true);
         event.note.strumLine.deleteNote(event.note);
     }
 }

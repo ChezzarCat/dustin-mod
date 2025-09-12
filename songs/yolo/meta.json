@@ -1,5 +1,6 @@
 {
-	"name": "YOLO",
+	"name": "yolo",
+	"displayName": "YOLO",
 	"needsVoices": true,
 	"bpm": 190,
 	"customValues": {

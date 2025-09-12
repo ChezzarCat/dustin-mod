@@ -71,8 +71,9 @@ var canInput:Bool = true;
 function create() {
     CoolUtil.playMenuSong();
     for (week in weeks.weeks) {
-        var idk = thoseWhoKnow[week.id.split("-")[0]];
-        if (idk != null) idk[3].push(week);
+        var arr = week.id.split("-");
+        var idk = thoseWhoKnow[arr[0]];
+        if (idk != null) idk[3].insert(arr.length > 0 ? (Std.parseInt(arr[1]) - 1) : 0, week);
     }
 
     FlxG.mouse.visible = true;

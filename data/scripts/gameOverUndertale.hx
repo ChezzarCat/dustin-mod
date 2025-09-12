@@ -59,6 +59,8 @@ function create(e) {
     game_over.cameras = [gameOverCam];
     add(game_over);
     game_over.screenCenter();
+    if (songName == "genocides")
+        game_over.y += 30;
 
     quoteTextObj = newFunkinTypeText(0, 500, FlxG.width, quoteString != null ? quoteString : "Don't lose hope!");
     quoteText = quoteTextObj.flxtext;
@@ -69,7 +71,7 @@ function create(e) {
     quoteText.alignment = "center";
     quoteText.letterSpacing = 8;
     add(quoteText);
-    quoteText.y = 530;
+    quoteText.y = songName == "genocides" ? 370 : 530;
     quoteTextObj.defaultSound = FlxG.sound.load(Paths.sound('talk/' + textSound));
 
     if (soundName == "fellsans") {
@@ -96,7 +98,7 @@ function create(e) {
     heart.screenCenter();
 
     var positionToTween = heart.y + 80;
-    heart.y = heart.y + 400;
+    heart.y = heart.y + (songName == "genocides" ? 500 : 400);
 
     var heartPath2:String = soulType ? "game/gameover/monster_heart_broken" : "game/gameover/heart_broken";
     heartbroken = new FunkinSprite().loadGraphic(Paths.image(heartPath2));

@@ -360,7 +360,7 @@ function changeAttackerSpeed(salpha:String) {
 
 function onSongEnd() {
     if (PlayState.isStoryMode) {
-        if (didDamage) PlayState.storyPlaylist.remove("You-Are");
-        else PlayState.storyPlaylist.remove("The-Uprising");
+        if (didDamage) PlayState.storyPlaylist.remove("you-are");
+        else PlayState.storyPlaylist.remove("the-uprising");
     }
 }

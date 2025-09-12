@@ -4,12 +4,14 @@ var karmaDrainDuration:Float = 5;
 var karmaDrainTick:Float = 0.1;
 var karmaDrainTimeLeft:Float = 0;
 
-function onNoteCreation(event:NoteCreationEvent) {
-    if (!FlxG.save.data.mechanics && (event.note.noteType == "NOTE_karma" || event.noteType == "NOTE_hate")) {
+function onNoteCreation(event:NoteCreationEvent) if (event.note.noteType == "NOTE_karma" || event.noteType == "NOTE_hate") {
+    if (!FlxG.save.data.mechanics) {
         event.note.strumTime -= 999999;
         event.note.exists = event.note.active = event.note.visible = false;
         return;
     }
+
+    event.note.avoid = true;
 }
 
 function onPlayerMiss(event) {

@@ -5,13 +5,13 @@
 	"stepsPerBeat": 4,
 	"bpm": 132,
 	"difficulties": [
-		"HARD"
+		"hard"
 	],
 	"needsVoices": true,
 	"parsedColor": -7179779,
 	"displayName": "Inopia",
 	"icon": "face",
-	"name": "Inopia",
+	"name": "inopia",
 	"color": "#9271FD",
 	"customValues": {
 		"customName": "inOpia",

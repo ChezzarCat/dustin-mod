@@ -2,7 +2,7 @@
 	"opponentModeAllowed": false,
 	"icon": "face",
 	"difficulties": [
-		"HARD"
+		"hard"
 	],
 	"customValues": {
 		"customName": "bargAin",
@@ -21,7 +21,7 @@
 		"stats": "* SANS 1 ATK 1 DEF\n* The easiest enemy.\n* He did your mom last night.",
 		"titleCardSubtext": "* by David0414"
 	},
-	"name": "Bargain",
+	"name": "bargain",
 	"coopAllowed": false,
 	"stepsPerBeat": 4,
 	"displayName": "Bargain",

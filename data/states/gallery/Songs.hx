@@ -78,6 +78,7 @@ function create():Void {
     add(background);
 
     imageDisplay = new FlxSprite();
+    imageDisplay.antialiasing = Options.antialiasing;
     updateImage();
     imageDisplay.updateHitbox();
     add(imageDisplay);

@@ -12,14 +12,14 @@ var warp:CustomShader;
 
 function postCreate() {
     papyrusNutting = new FunkinSprite(0, 0, Paths.image("game/cutscenes/kinemorto/papyrusBLOWINGup"));
-    papyrusNutting.addAnim('burstin', 'pop off girl', 18);
+    papyrusNutting.addAnim('burstin', 'pop off girl', 13);
     papyrusNutting.antialiasing = Options.antialiasing;
     papyrusNutting.scale.set(0.68, 0.68);
     insert(members.length - 1, papyrusNutting);
     papyrusNutting.scrollFactor.set();
     papyrusNutting.screenCenter();
     papyrusNutting.zoomFactor = 0;
-    papyrusNutting.alpha = 0.0001;
+    papyrusNutting.alpha = 0.00001;
     papyrusNutting.animation.finishCallback = (_) -> {
         papyrusNutting.alpha = 0.0001;
         executeEvent({name: "Screen Coverer", time: 0, params: [false, 0xFF000000, 1, 4, "linear", "In", "camHUD", "back"]});
@@ -166,11 +166,13 @@ function stepHit(step:Int) {
             camZoomMult = 1;
         case 800:
             for (cam in FlxG.cameras.list) cam.visible = false;
-            new FlxTimer().start(0.06, () -> {
+            new FlxTimer().start(0.08, () -> {
                 for (cam in FlxG.cameras.list) cam.visible = true;
 
                 papyrusNutting.alpha = 1;
                 papyrusNutting.playAnim("burstin", true);
+
+                camCharacters.shake(0.015, 0.14);
             });
         case 832:
             snowShader2.BRIGHT = 2; snowShader.BRIGHT = 2;
@@ -240,7 +242,7 @@ function stepHit(step:Int) {
     }
 
     // please dont slime me out for this fnf coder twitter -lunar
-    if ((step >= 552 && step <= 800) && step % 4 == 0) {
+    if ((step >= 552 && step <= 795) && step % 4 == 0) {
         FlxTween.num(.01, .001, (Conductor.stepCrochet / 1000) * 4, {ease: FlxEase.cubeOut}, (val:Float) -> {radial.blur = val;});
         FlxTween.num(.5, .0, (Conductor.stepCrochet / 1000) * 4, {ease: FlxEase.quadIn}, (val:Float) -> {warp.distortion = val;});
         FlxTween.num(.14, 0, (Conductor.stepCrochet / 1000) * 4, {ease: FlxEase.cubeIn}, (val:Float) -> {chromWarp.distortion = val;});

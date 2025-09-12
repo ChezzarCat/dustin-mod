@@ -34,11 +34,8 @@ float func(vec2 p){
     return n*.25 + clamp(sFloor(n*(palNum - .001))/(palNum - 1.), 0., 1.)*.75;
 }
 
-float coolNoise() {
-    vec2 u = (gl_FragCoord.xy)/openfl_TextureSize.y;
-    float f = func(u);
-    float ssd = ns; 
-    return f*.4 + ssd*.6;;
+float coolNoise() {  // had to do some edits for this to make it work with every gpu/monitor size  - Nex
+    return clamp(func(gl_FragCoord.xy / openfl_TextureSize.xy) * 0.4 + ns * 0.6, 0.0, 1.0);
 }
 
 void main() {

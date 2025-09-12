@@ -41,8 +41,8 @@ function postCreate() {
     dustinHealthBar.cameras = [camHUD]; dustinHealthBar.scrollFactor.set();
     dustinHealthBar.screenCenter(FlxAxes.X);
 
-    add(dustinHealthBar); hudElements.push(dustinHealthBar);
-    add(dustinHealthBG); hudElements.push(dustinHealthBG);
+    insert(members.indexOf(strumLines) + 1, dustinHealthBar); hudElements.push(dustinHealthBar);
+    insert(members.indexOf(dustinHealthBar) + 1, dustinHealthBG); hudElements.push(dustinHealthBG);
 
     for (i => char in [boyfriend != null ? boyfriend.getIcon() : "face", dad != null ? dad.getIcon() : "face"]) {
         var icon:FlxSprite = createHealthIcon(char, i == 0);
@@ -50,7 +50,7 @@ function postCreate() {
             case 0: dustiniconP1 = icon;
             case 1: dustiniconP2 = icon;
         }
-        add(icon); hudElements.push(icon);
+        insert(members.indexOf(dustinHealthBG) + 1, icon); hudElements.push(icon);
 
         if (i == 1 || !Options.gameplayShaders) continue;
         icon.shader = new CustomShader("iconshader");

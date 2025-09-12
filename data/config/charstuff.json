@@ -130,7 +130,7 @@
       {
         "name": "Chara",
         "desc": "Chara in the role of Sans.\n\nThey are the adopted sibling of Asriel (often acting as the voice of reason between the two), and have a very cynical view of the world and a deep hatred for humanity.\n\nAs this is the \"Dustshift\" version of Chara, they are burdened by the same knowledge as Sans in the original \"Dusttale.\"",
-        "authors": "",
+        "authors": "* CHEZZAR",
         "image": "game/ui/pause/characterIcons/redscreen",
         "offset": { "x": -20, "y": 50 }
       }
@@ -209,7 +209,7 @@
       {
         "name": "Sans",
         "desc": "This \"Dustdust\" is the sans from the genocide ending of Dusttale 2.0.\n\nThrough sheer frustration of defeat, he decided to kill as much as he can, and in doing so he gained enough power to rip through timelines to continue his endless killing spree become ever more powerful.",
-        "authors": "* CARNO-POWER",
+        "authors": "* LEMONEMY",
         "image": "game/ui/pause/characterIcons/vindication",
         "offset": { "x": 20, "y": 95 }
       }
@@ -234,7 +234,7 @@
       },
       {
         "name": "Thero",
-        "desc": "*Placeholder",
+        "desc": "* Placeholder",
         "authors": "* LEMONEMY",
         "image": "game/ui/pause/characterIcons/thero",
         "offset": { "x": -35 , "y": 5 }

@@ -8,9 +8,9 @@ function onStartSong() {
 function onGamePause(e) if (bigRichsIncoming) e.cancel(true);
 
 var bigRichsIncoming:Bool = false;
-public function bazinga() {
+public function bazinga() if (!bigRichsIncoming) {
     bigRichsIncoming = true;
-    
+
     var gainAmount:Int = Std.int(switch (curRating.rating) {
         case "S++" | "=)": 700;
         case "S": 650;

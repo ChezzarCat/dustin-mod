@@ -244,16 +244,12 @@ function showPreview(index:Int):Void {
     var pathWithExt = imagePathsWithExt[index];
     var pathNoExt = imagePathsNoExt[index];
 
-    var isVideo = pathWithExt.indexOf("_thumb") != -1;
+    if (pathNoExt.indexOf("cutscenes/") != -1) {
+        var videoName = Paths.video(Path.withoutExtension(StringTools.replace(pathWithExt, "_thumb", "")));
+        trace(pathWithExt, videoName);
 
-    if (isVideo) {
-        trace (pathWithExt);
-        var videoName = StringTools.replace(pathWithExt, "_thumb", "");
-        videoName = StringTools.replace(videoName, ".png", "");
-
-        if (FlxG.sound.music != null && FlxG.sound.music.playing) {
+        if (FlxG.sound.music != null && FlxG.sound.music.playing)
             FlxG.sound.music.pause();
-        }
 
         previewVideo = new FlxVideoSprite(previewFrame.x + 10, 10);
         previewVideo.antialiasing = Options.antialiasing;
@@ -261,7 +257,7 @@ function showPreview(index:Int):Void {
         previewVideo.visible = false;
         add(previewVideo);
 
-        previewVideo.load(Paths.video(videoName));
+        previewVideo.load(videoName);
 
         previewVideo.bitmap.onFormatSetup.add(function():Void {
             var w = previewVideo.bitmap.bitmapData.width;

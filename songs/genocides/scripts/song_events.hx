@@ -7,7 +7,11 @@ import openfl.display.Sprite;
 import openfl.system.Capabilities;
 import funkin.backend.system.Main;
 
-var fullscreen = #if sys FlxG.fullscreen #else true #end;
+#if (linux || macos)  // Alt + Enter is broken on these bruh THANK YOU LIME!!  - Nex
+FlxG.fullscreen = false;
+#end
+
+var fullscreen = #if desktop FlxG.fullscreen #else true #end;
 var canGo:Bool = false;
 var app:Window = null;
 var tottalTimer:Float = FlxG.random.float(100, 1000);
@@ -25,13 +29,21 @@ function postCreate() {
             alwaysOnTop: true,
             width: Capabilities.screenResolutionX,
             height: Capabilities.screenResolutionY,
-            frameRate: 1,
+            frameRate: Options.framerate,
             borderless: true,
             //hidden: true
         });
 
+        FlxG.autoPause = false;
+        app.onFocusOut.add(() -> /*Lib.application.window?.focus()*/ if (canPause && !paused) pauseGame());
+        app.onKeyDown.add((e) -> Lib.application.window?.onKeyDown.dispatch(e));
+        app.onKeyUp.add((e) -> Lib.application.window?.onKeyUp.dispatch(e));
+        app.onMouseDown.add((e) -> Lib.application.window?.onMouseDown.dispatch(e));
+        app.onMouseUp.add((e) -> Lib.application.window?.onMouseUp.dispatch(e));
+        app.onMouseMove.add((e) -> Lib.application.window?.onMouseMove.dispatch(e));
+        app.onMouseWheel.add((e) -> Lib.application.window?.onMouseWheel.dispatch(e));
+
         Lib.application.window.onClose.add(shouldClose);
-        app.onFocusIn.add(() -> Lib.application.window?.focus());
         app.onClose.add(() -> if (!canGo) app.onClose.cancel());
 
         NYEHEHE.width = app.width;
@@ -47,7 +59,7 @@ function postCreate() {
 }
 
 function update() if (FlxG.fullscreen != fullscreen)
-        FlxG.fullscreen = fullscreen;  // not gonna let you change mid song bitch  - Nex
+    FlxG.fullscreen = fullscreen;  // not gonna let you change mid song bitch  - Nex
 
 function onSongStart() {
     dad.playAnim("walk", true);
@@ -66,6 +78,7 @@ function onEvent(_) if (_.event.name == "Play Animation" && _.event.params[1] ==
 function destroy() {
     if (fullscreen) Main.instance.removeChild(NYEHEHE);
     else shouldClose();
+    FlxG.autoPause = Options.autoPause;
     NYEHEHE.bitmapData.dispose();
     Lib.application.window.onClose.remove(shouldClose);
 }
@@ -73,4 +86,5 @@ function destroy() {
 function shouldClose() {
     canGo = true;
     app?.close();
+    Lib.application.window?.focus();
 }

@@ -161,7 +161,7 @@ function shootBlast() {
     new FlxTimer().start(0.4, function(tmr:FlxTimer) {
         if (player != null) {
 
-            if (health <= 0.3) {
+            if (health <= 0.3 && !player.cpu) {
                 health = 0;
             } else
             {

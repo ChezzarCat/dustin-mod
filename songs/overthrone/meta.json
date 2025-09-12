@@ -22,7 +22,7 @@
 		"mainColor": "#B93B3E",
 		"stats": "* SANS 58 ATK 15 DEF\n* The demon in red.\n* Burned everyone to ashes."
 	},
-	"name": "Overthrone",
+	"name": "overthrone",
 	"coopAllowed": false,
 	"stepsPerBeat": 4,
 	"displayName": "Overthrone",
