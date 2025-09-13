@@ -20,11 +20,12 @@ function postCreate() {
 var boner:FlxTween = null; // peak var name -lunar
 function moveBones(direction:String) {
     if (!FlxG.save.data.mechanics) return;
-    
+
     boner?.cancel();
     var isPaps:Bool = bones.animation.curAnim.name == "paps";
 
-    if(isPaps) bones.screenCenter(FlxAxes.Y);
-    else bones.y = -100;
+    bones.forceIsOnScreen = downscroll && !isPaps;
+    if (isPaps) bones.screenCenter(FlxAxes.Y);
+    else bones.y = downscroll ? -bones.height / 1.5 : -100;
     boner = FlxTween.tween(bones, {x: direction == "appear" ? FlxG.width - (bones.width * (isPaps ? .78 : .95)) : FlxG.width + bones.width}, (Conductor.stepCrochet / 1000) * (direction == "appear" ? 32 : 14), {ease: FlxEase.sineInOut});
 }
