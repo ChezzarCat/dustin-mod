@@ -3,6 +3,8 @@ import sys.FileSystem;
 import funkin.options.type.TextOption;
 import funkin.options.type.Checkbox;
 import funkin.options.TreeMenuScreen;
+import funkin.savedata.FunkinSave;
+import funkin.backend.assets.ModsFolder;
 
 function postCreate() {
     bg.visible = false;
@@ -122,7 +124,27 @@ function update(elapsed:Float) {
                 case "optionsTree.miscellaneous-name":
                     for (member in 1...5) // get rid of some cne stuff that will mess with the build
                         menu.members.remove(menu.members[1]);
+
+                    #if desktop
+                    menu.add(new Checkbox("Genocides Swag", "Uncheck this if you cannot play Genocides. You'll loose a VERY swag surprise....", "gSwag", null, FlxG.save.data));
+                    #end
+
                     if (!FileSystem.exists("dev.txt")) menu.members.shift();
+
+                    for (member in menu.members)
+                        if (member.rawText == "MiscOptions.resetSaveData-name") {
+                            member.selectCallback = () -> {
+                                FunkinSave.save.erase();
+                                FunkinSave.highscores.clear();
+                                FunkinSave.flush();
+
+                                FlxG.save.erase();
+			                    FlxG.save.data.dustinMigrated = true;
+                                FlxG.save.flush();
+
+                                ModsFolder.switchMod(ModsFolder.currentModFolder);
+                            }
+                        }
             }
         }
     }

@@ -146,7 +146,7 @@ var bgbox;
 
 function create() {
     itemKeys.visible = itemCD.visible = !FlxG.save.data.dustinBeatEverything;
-    dialogues = dialogue[FlxG.save.data.dustinBeatEverything ? "boughtItAll" : (FunkinSave.getWeekHighscore("dusttale-1", "hard").date != null ? "afterStoryMode" : "beforeStoryMode")];
+    dialogues = dialogue[FlxG.save.data.dustinBeatEverything ? "boughtItAll" : (FunkinSave.getWeekHighscore("dusttale-1", "hard").score >= 1 ? "afterStoryMode" : "beforeStoryMode")];
 
     if (!shopMusicStarted) {
         FlxG.sound.music.stop();
@@ -233,6 +233,8 @@ function create() {
     FlxG.camera.scroll.x = 220;
     camOFFX = 220;
     leftAlpha = 0;
+
+    first = true;
 }
 
 var camOFFX:Float = 220;
@@ -311,9 +313,15 @@ function exit() {
     FlxG.switchState(new ModState("NewMainMenu"));
 }
 
-function changeSel(_:Int, ?hello:Bool = true) {
+var first:Bool = false;
+function changeSel(_:Int, ?hello:Bool) {
+    hello ??= true;
     camOFFX = 0;
     leftAlpha = 1;
+
+    if (first) FlxG.sound.play(Paths.sound("menu/gaster-vanish"), 0.2);
+    first = false;
+
     curItem = FlxMath.wrap(curItem + _, 0, items.length - 1);
 
     if (items[curItem] != null) {

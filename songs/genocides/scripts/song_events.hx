@@ -11,7 +11,8 @@ import funkin.backend.system.Main;
 FlxG.fullscreen = false;
 #end
 
-var fullscreen = #if desktop FlxG.fullscreen #else true #end;
+var actualFullscreen = FlxG.fullscreen;
+var fullscreen = #if desktop !FlxG.save.data.gSwag || actualFullscreen #else true #end;
 var canGo:Bool = false;
 var app:Window = null;
 var tottalTimer:Float = FlxG.random.float(100, 1000);
@@ -27,7 +28,7 @@ function postCreate() {
         app = Lib.application.createWindow({
             title: "DAME TU HUESITO",
             alwaysOnTop: true,
-            width: Capabilities.screenResolutionX,
+            width: Capabilities.screenResolutionX,  // Capabilities.screenResolutionX/Y can crash on ceratin devices I HATE YOU OPENFL  - Nex
             height: Capabilities.screenResolutionY,
             frameRate: Options.framerate,
             borderless: true,
@@ -58,8 +59,8 @@ function postCreate() {
     dad.x -= 1000;
 }
 
-function update() if (FlxG.fullscreen != fullscreen)
-    FlxG.fullscreen = fullscreen;  // not gonna let you change mid song bitch  - Nex
+function update() if (FlxG.fullscreen != actualFullscreen)
+    FlxG.fullscreen = actualFullscreen;  // not gonna let you change mid song bitch  - Nex
 
 function onSongStart() {
     dad.playAnim("walk", true);

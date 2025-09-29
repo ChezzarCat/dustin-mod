@@ -105,6 +105,14 @@ function update(elapsed:Float) if (vid != null) {
 
     //vid.x = Main.scaleMode.offset.x;
     //vid.y = Main.scaleMode.offset.y;
+
+    if (vid != null && !vid.autoVolumeHandle) {
+        vid.bitmap.volume = Math.floor(FlxMath.bound(getCalculatedVolume() * 3, 0, 1) * (100));
+    }
+}
+
+function getCalculatedVolume() {
+    return (FlxG.sound.muted ? 0 : 1) * FlxG.sound.volume;
 }
 
 function doAlphaTween() {

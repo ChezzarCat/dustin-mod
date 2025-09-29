@@ -70,10 +70,11 @@ var canInput:Bool = true;
 
 function create() {
     CoolUtil.playMenuSong();
+    weeks.weeks.sort((a, b) -> return Std.parseInt(a.id.split("-")[1]) - Std.parseInt(b.id.split("-")[1]));
     for (week in weeks.weeks) {
         var arr = week.id.split("-");
         var idk = thoseWhoKnow[arr[0]];
-        if (idk != null) idk[3].insert(arr.length > 0 ? (Std.parseInt(arr[1]) - 1) : 0, week);
+        if (idk != null) idk[3].push(week);
     }
 
     FlxG.mouse.visible = true;
@@ -102,9 +103,9 @@ function create() {
         screen.antialiasing = Options.antialiasing;
         selectScreens.push(screen);
 
-        if (FunkinSave.getWeekHighscore(i + "-1", "hard").date == null && !FlxG.save.data.dustinSeenUnlockAnims.contains(i) && i != "dusttale") { // FunkinSave.getWeekHighscore(i + "-1", "hard").date == null && 
+        if (FunkinSave.getWeekHighscore(i + "-1", "hard").score <= 0 && !FlxG.save.data.dustinSeenUnlockAnims.contains(i) && i != "dusttale") { // FunkinSave.getWeekHighscore(i + "-1", "hard").date == null && 
             spritet.color = FlxColor.BLACK;
-            
+
             var offset:Array<Int> = switch (i) {
                 case "dustswap": [25, -15];
                 case "dustfell": [-5, -15];
@@ -239,7 +240,7 @@ function select(id:Int) {
     canInput = false;
     FlxG.sound.play(Paths.sound("menu/select_freeplay"), 1);
     var ut = thoseWhoKnow[thoseWhoKnowTemp[id]][3];
-    var locked = FunkinSave.getWeekHighscore(ut[0].id, ut[0].difficulties[0]).date == null;
+    var locked = FunkinSave.getWeekHighscore(ut[0].id, ut[0].difficulties[0]).score <= 0;
     if (locked)
         PlayState.loadWeek(ut[0], ut[0].difficulties[0]);
 

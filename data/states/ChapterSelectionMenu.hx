@@ -46,7 +46,7 @@ function create() {
 
         var songData = [];
         for (sI => song in songs) {
-            var high = FunkinSave.getSongHighscore(song.toLowerCase(), "hard").date;
+            var high = FunkinSave.getSongHighscore(song.toLowerCase(), "hard").score;
 
             var songCard = new FunkinSprite().loadGraphic(Paths.image('menus/covers/' + song, null, false, "jpg"));
             songCard.setGraphicSize(cardSize, cardSize);
@@ -62,8 +62,8 @@ function create() {
             add(boxOutline);
             add(songCard);
 
-            if (high == null) songCard.colorTransform.color = 0xFF000000;
-            songCard.ID = high == null ? -1 : 0;
+            if (high <= 0) songCard.colorTransform.color = 0xFF000000;
+            songCard.ID = high <= 0 ? -1 : 0;
 
             songData.push({outline: boxOutline, card: songCard}); // to put it in songChapters
             songCards.push({outline: boxOutline, card: songCard, curChapter: cI}); // for curSelected

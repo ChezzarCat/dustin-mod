@@ -34,6 +34,7 @@ var bgtv;
 var fg;
 
 var ink:FunkinSprite = null;
+var genocidesText:FunkinText = null;
 
 var seedeeznuts:FunkinSprite = new FunkinSprite(0, 0, Paths.image("menus/shop/cds"));
 
@@ -60,6 +61,16 @@ function create() {
         portraits.push(portrait);
         portrait.y = portrait.y + 3;
         add(portrait);
+
+        #if desktop
+        if (name == "genocides" && genocidesText == null) {
+            genocidesText = new FunkinText(portrait.x - 100, portrait.y - 130, portrait.width + 200, "If the song is bugged for you, uncheck Options > Miscellaneous > Genocides Swag.");
+            genocidesText.setFormat(Paths.font("fallen-down.ttf"), 14, 0xFFFFFFFF);
+            genocidesText.scrollFactor.set();
+            genocidesText.textField.antiAliasType = 0/*ADVANCED*/;
+            genocidesText.textField.sharpness = 400/*MAX ON OPENFL*/;
+        }
+        #end
 
         if (name == "uncreate" && ink == null) {
             ink = new FunkinSprite(0, 0, Paths.image('menus/freeplay/Inks_artWork'));
@@ -91,6 +102,7 @@ function create() {
     add(bgtv);
 
     if (ink != null) add(ink);
+    if (genocidesText != null) add(genocidesText);
 
     fg = new FunkinSprite().loadGraphic(Paths.image('menus/freeplay/fg_freeplay'));
     fg.antialiasing = false;
@@ -353,6 +365,9 @@ function changeSelection(amt:Int, force:Bool = false) {
             });
         }
     }
+
+    // who never cached the song or the name bruh, now im too lazy to do it  - Nex
+    genocidesText?.visible = boxes[curSelected].song.name.toLowerCase() == "genocides" && FlxG.save.data.dustinBoughtStuff.contains(boxes[curSelected].song.name.toLowerCase());
 
     for (i => p in portraits)
         p.alpha = curSelected == p.ID && FlxG.save.data.dustinBoughtStuff.contains(boxes[curSelected].song.name.toLowerCase()) ? 1 : 0.0001;

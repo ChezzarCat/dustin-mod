@@ -1,31 +1,33 @@
 //
-import flixel.util.FlxSave;
 import Lambda;
-import openfl.net.SharedObject;
-import lime.system.System;
+import String;
+import StringTools;
+import Type;
+import flixel.util.FlxSave;
+import funkin.savedata.FunkinSave;
+import haxe.Unserializer;
 import haxe.ds.StringMap;
-
+import lime.system.System;
+import openfl.net.SharedObject;
 #if sys
-import sys.io.File;
 import sys.FileSystem;
+import sys.io.File;
 #end
 
-import StringTools;
-import haxe.Unserializer;
-import Type;
-import String;
-
-import funkin.savedata.FunkinSave;
 
 static function load_save() {
+    // cuz only windows users had the old build accessible, if someone used a compatibility layer it was inside another path anyways, also this potentially crashes in mac, soo  - Nex
+    #if windows
     migrate_save();
-    
+    #end
+
     FlxG.save.data.dustinBoughtStuff ??= [];
     FlxG.save.data.mechanics ??= true;
     FlxG.save.data.nh ??= false;
     FlxG.save.data.dustinSeenUnlockAnims ??= [];
     FlxG.save.data.dustinCash ??= 0;
     FlxG.save.data.dustinBeatEverything ??= false;
+    FlxG.save.data.gSwag ??= true;
 
     FlxG.save.data.dustinMigrated = true;
 
@@ -103,16 +105,6 @@ static function migrate_save() {
     }
 }
 
-static function update_dustin_scores() {
-    var songsList:Array<String> = [for (song in Paths.getFolderDirectories('songs', false, 1)) song.toLowerCase()];
-
-    for (song in FunkinSave.highscores.keys()) {
-		var enumParams:Array<Dynamic> = Type.enumParameters(song);
-        if (songsList.contains((enumParams[0])) && !FlxG.save.data.dustinBoughtStuff.contains((enumParams[0]))) 
-            FlxG.save.data.dustinBoughtStuff.push(enumParams[0]);
-	}
-}
-
 static function load_shaders_data() {
     FlxG.save.data.bloom ??= true;
     FlxG.save.data.particles ??= true;
@@ -171,11 +163,22 @@ static function set_shaders_low() {
     FlxG.save.data.impact = false;
 }
 
+static function update_dustin_scores() {
+    var songsList:Array<String> = [for (song in Paths.getFolderDirectories('songs', false, 1)) song.toLowerCase()];
+
+    for (song in FunkinSave.highscores.keys()) {
+		var enumParams:Array<Dynamic> = Type.enumParameters(song);
+        if (songsList.contains((enumParams[0])) && !FlxG.save.data.dustinBoughtStuff.contains((enumParams[0]))) 
+            FlxG.save.data.dustinBoughtStuff.push(enumParams[0]);
+	}
+}
+
 static var FULL_VOLUME:Bool = false;
 
 static var weekPlaylist:Array<Dynamic> = [];
 static var weekDifficulty:String = "";
 
+#if windows
 // REIMPLEMENTED SERIALIZER 
 function get(p:Int):Int {
     return StringTools.fastCodeAt(buf, p);
@@ -505,3 +508,4 @@ function fastSubstr(s:String, pos:Int, length:Int):String {
     return s.substr(pos, length);
     #end
 }
+#end

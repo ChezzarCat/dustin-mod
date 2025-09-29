@@ -37,10 +37,10 @@ var leftArrow:FlxSprite;
 var rightArrow:FlxSprite;
 
 var galleryGroups:Array<String> = [
-    "mods/dustin/images/gallery/shitpost",
-    "mods/dustin/images/gallery/concepts",
-    "mods/dustin/images/gallery/cutscenes",
-    "mods/dustin/images/gallery/winner_contest"
+    "shitpost",
+    "concepts",
+    "cutscenes",
+    "winner_contest"
 ];
 var currentGroupIndex = 0;
 
@@ -139,19 +139,20 @@ function loadGalleryGroup(groupPath:String) {
     var offsetY = margin;
     var colIndex = 0;
 
-    if (!FileSystem.exists(groupPath) || !FileSystem.isDirectory(groupPath)) return;
-    var files = FileSystem.readDirectory(groupPath);
+    groupPath = "gallery/" + groupPath;
+    var fullPath = Paths.getAssetsRoot() + "/images/" + groupPath;
+    if (!FileSystem.exists(fullPath) || !FileSystem.isDirectory(fullPath)) return;
+    var files = FileSystem.readDirectory(fullPath);
 
     for (file in files) {
         var ext = Path.extension(file).toLowerCase();
         if (ext == "png" || ext == "jpg") {
             var name = file.substr(0, file.lastIndexOf("."));
-            var relativePath = groupPath.substr("mods/dustin/images/".length);
-            var pathNoExt = relativePath + "/" + name;
+            var pathNoExt = groupPath + "/" + name;
             var pathWithExt = file;
 
             var spr = new FlxSprite();
-            spr.loadGraphic(Paths.image(pathNoExt, null, false, "jpg"));
+            spr.loadGraphic(Paths.image(pathNoExt, null, false, ext));
 
             var origW = spr.frameWidth, origH = spr.frameHeight;
             var scale = Math.min(frameSize/origW, frameSize/origH,1);
