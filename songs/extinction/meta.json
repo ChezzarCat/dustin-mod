@@ -1,0 +1,22 @@
+{
+	"name": "extinction",
+	"displayName": "Extinction",
+	"needsVoices": true,
+	"bpm": 190,
+	"customValues": {
+		"gameover" :{
+			"quote": "c'mon pal, is that all you got?",
+			"sound": "sans",
+			"song": "yolo",
+			"isMonster": false
+		},
+		"titleCardSubtext": "* by Chezzar",
+		"stats": "* SANS 10 ATK 999999999 DEF\n* Doesn't know personal space.\n* Raddest being in the multiverse.",
+		"credits": {
+			"SONG": "DAVID0141",
+			"SPRITES": "SLUSHY_ANIME, FLOID",
+			"BACKGROUND": "SLUSHY_ANIME",
+			"CHART": "FROSTIC"
+			}
+	}
+}

@@ -167,6 +167,7 @@ function select() {
     switch (_list[curSelected]) {
         case "STORY MODE": FlxG.switchState(new StoryMenuState());
         case "FREEPLAY": FlxG.switchState(new ModState("NewFreeplayMenu"));
+        case "OVERWORLD": FlxG.switchState(new ModState("overworld_rooms/room_area1"));
         case "SHOP": FlxG.switchState(new ModState("ShopState"));
         case "GALLERY": FlxG.switchState(new ModState("gallery/GalleryState"));
         case "OPTIONS": FlxG.switchState(new OptionsMenu());

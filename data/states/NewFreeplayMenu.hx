@@ -155,7 +155,7 @@ function create() {
         boxBG.setPosition(boxOutline.x + boxOutline.width / 2 - boxBG.width / 2, boxOutline.y + boxOutline.height / 2 - boxBG.height / 2);
         add(boxBG);
 
-        var nameTxt = new FunkinText(0, 0, boxBG.width, FlxG.save.data.dustinBoughtStuff.contains(song.name.toLowerCase()) ? song.displayName : hideStr(song.displayName), 36, false);
+        var nameTxt = new FunkinText(0, 0, boxBG.width, song.displayName , 36, false);
         nameTxt.setFormat(Paths.font("fallen-down.ttf"), 36, 0xFFFFFFFF);
         nameTxt.setPosition(boxBG.x + boxBG.width / 2 - nameTxt.width / 2, boxBG.y);
         nameTxt.alignment = "center";
@@ -166,7 +166,7 @@ function create() {
         add(divider);
 
         // === CREDITS DISPLAY (split by category) ===
-        var creditData = song.customValues != null && FlxG.save.data.dustinBoughtStuff.contains(song.name.toLowerCase()) ? song.customValues.credits : null;
+        var creditData = song.customValues != null && true ? song.customValues.credits : null;
 
         var creditLabels = ["SONG", "SPRITES", "BACKGROUND", "CHART"];
         var creditColors = [0xFF1db2f0, 0xFFf50334, 0xFFbe2879, 0xFFa31be0];
@@ -251,6 +251,7 @@ function create() {
     barBottom.scrollFactor.set();
     add(barBottom);
 }
+
 
 var iTime:Float = 0;
 function update(elapsed:Float) {
@@ -355,7 +356,6 @@ function changeSelection(amt:Int, force:Bool = false) {
         oldstatic.strength = 260;
         tape_noise.strength = 4;
 
-        if (FlxG.save.data.dustinBoughtStuff.contains(boxes[curSelected].song.name.toLowerCase())) {
             FlxTween.num(60, 5, 0.5, {ease: FlxEase.quadOut}, function(val:Float) {
                 oldstatic.strength = val;
             });
@@ -363,14 +363,14 @@ function changeSelection(amt:Int, force:Bool = false) {
             FlxTween.num(4, 1, 0.5, {ease: FlxEase.quadOut}, function(val:Float) {
                 tape_noise.strength = val;
             });
-        }
+        
     }
 
     // who never cached the song or the name bruh, now im too lazy to do it  - Nex
     genocidesText?.visible = boxes[curSelected].song.name.toLowerCase() == "genocides" && FlxG.save.data.dustinBoughtStuff.contains(boxes[curSelected].song.name.toLowerCase());
 
     for (i => p in portraits)
-        p.alpha = curSelected == p.ID && FlxG.save.data.dustinBoughtStuff.contains(boxes[curSelected].song.name.toLowerCase()) ? 1 : 0.0001;
+        p.alpha = curSelected == p.ID && true ? 1 : 0.0001;
 
     seedeeznuts.playAnim(boxes[curSelected].song.name.toLowerCase());
     seedeeznuts.visible = FlxG.save.data.dustinBoughtStuff.contains(boxes[curSelected].song.name.toLowerCase());
@@ -390,7 +390,6 @@ var angleoffset:Float = 0;
 
 
 function selectSong() {
-    if (!FlxG.save.data.dustinBoughtStuff.contains(boxes[curSelected].song.name.toLowerCase())) return allowInput = true;
     var curBox = boxes[curSelected];
     PlayState.loadSong(curBox.song.name, curBox.song.difficulties[0], false, false);
 
