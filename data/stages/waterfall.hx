@@ -19,6 +19,11 @@ function create() {
     heat.strength = 0;
     heat2.strength = 0;
 
+    
+    snow = importScript("data/scripts/cornered-shader");
+    snow.set("initIndex", members.length);
+    snow.set("isOn", false);
+
     /*
     spawnWaterEmitter(-600, 325, 300);
     spawnWaterEmitter(-600, 680, 300);
@@ -193,6 +198,12 @@ function stepHit(step:Int) {
 
             cracks.alpha = 0;
             bones.alpha = 0;
+
+            snow.call("enableSnow");
+            snow.set("isOn", true);
+
+            bg_end.alpha = 1;
+            ilumination_end.alpha = 1;
 
             // Tween the max song length from 199000ms to 307000ms over 3 seconds
             if (maxTimeTween != null) maxTimeTween.cancel();

@@ -147,8 +147,8 @@ function postUpdate(elapsed:Float) {
     // awesome math time woo hoo (╯°□°)╯( ┻━┻
     // evenly splitting them up n shit im da goat like dat
 
-    var minY = FlxG.height * 0.5;
-    var maxY = FlxG.height * 0.8;
+    var minY = FlxG.height * 0.48;
+    var maxY = FlxG.height * 0.85;
 
     var totalLeftoverHeight = maxY - minY;
     for (a in options) totalLeftoverHeight -= a.height;
