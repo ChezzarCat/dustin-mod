@@ -1,19 +1,19 @@
 {
 	"customValues": {
-		"gameover": {
-			"quote": "...get out of his body.",
-			"isMonster": false,
-			"sound": "gf",
-			"song": "you-are"
-		},
 		"credits": {
-			"SPRITES": "WEEDEET, FIZZYPOP",
-			"BACKGROUND": "WEEDEET, JFLOID",
 			"CHART": "GOJIMANPLAYS",
+			"BACKGROUND": "WEEDEET, JFLOID",
+			"SPRITES": "WEEDEET, FIZZYPOP",
 			"SONG": "CHEZZAR, UG32T, SKIE"
 		},
-		"titleCardSubtext": "* by Chezzar/pause(0.5)/\n* ft. Ug32t & Chezzar",
-		"stats": "* BOYFRIEND 37 ATK 30 DEF\n* Your vessel.\n* You are losing control over him."
+		"gameover": {
+			"isMonster": false,
+			"quote": "...get out of his body.",
+			"song": "you-are",
+			"sound": "gf"
+		},
+		"stats": "* BOYFRIEND 37 ATK 30 DEF\n* Your vessel.\n* You are losing control over him.",
+		"titleCardSubtext": "* by Chezzar/pause(0.5)/\n* ft. Ug32t & Chezzar"
 	},
 	"color": "#FFFFFF",
 	"opponentModeAllowed": true,
