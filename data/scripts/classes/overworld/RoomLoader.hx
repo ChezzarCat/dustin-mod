@@ -4,7 +4,7 @@ import funkin.backend.MusicBeatState;
 import flixel.util.FlxSpriteUtil;
 import Xml;
 
-importClass("data.scripts.classes.overworld.MainChara", __script__);
+import data.scripts.classes.overworld.MainChara;
 
 class RoomLoader {
     public var LAYER_UNKNOWN:Int = -1;
@@ -185,7 +185,7 @@ class RoomLoader {
         var playerData:{x:Float, y:Float, facing:String} = objectsLayer.player_enterances[enterance];
 
         player = new MainChara(playerData.x, playerData.y, null, playerData.facing == null ? "d" : playerData.facing);
-        FlxG.state.add(player);
+        FlxG.state.add(player.sprite);
 
         var rects:Array<{x:Float, y:Float, w:Float, h:Float, callback:()->Void}> = collisionLayer.rects;
         for (room_exit in objectsLayer.room_exits)

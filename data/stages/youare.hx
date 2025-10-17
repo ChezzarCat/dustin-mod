@@ -28,7 +28,9 @@ var customUI:Array<FlxSprite>;
 
 var dadClone:Character = null;
 var bfClone:Character = null;
-
+var glitch:CustomShader = null;
+var glitchTimer:Float = 0;
+var glitchValues:Array<Float> = [0.05, 0.15, 0.2, 0.3];
 var dadPos:Float = 670;
 
 
@@ -70,6 +72,9 @@ function create() {
 
     autoTitleCard = false;
     bg_player.camera = bgCam;
+
+    glitch = new CustomShader("glitching");
+    
 }
 
 /*function onStartCountdown(countdown){ 
@@ -268,6 +273,13 @@ function stepHit(step:Int) {
             }
 
             createDadClone(dadPos, 0.75);
+
+        case 3328:
+            boyfriend.shader = glitch;
+
+        case 3456:
+            sans_bg.alpha = 0;
+            sans_fg.alpha = 0;
     }
 }
 
@@ -276,6 +288,14 @@ var tottalTimer:Float = FlxG.random.float(100, 1000);
 var heartBaseY:Float = 0;
 var heartFloatTime:Float = 0;
 function update(elapsed:Float) {
+    glitchTimer += elapsed;
+        if (glitchTimer >= 0.15) {
+            glitchTimer = 0;
+
+            var randIndex = FlxG.random.int(0, glitchValues.length - 1);
+            glitch.AMT = glitchValues[randIndex];
+        } 
+
     water?.time = (tottalTimer += elapsed);
 
     tape_noise.time = tottalTimer;

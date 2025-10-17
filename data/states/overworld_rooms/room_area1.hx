@@ -2,8 +2,9 @@
 __overworldResize();
 __undertaleFrameRate();
 
-importClass("data.scripts.classes.overworld.MainChara", __script__);
-importClass("data.scripts.classes.overworld.RoomLoader", __script__);
+import data.scripts.classes.overworld.MainChara;
+import data.scripts.classes.overworld.RoomLoader;
+
 
 public var room:RoomLoader;
 public var player:MainChara;
@@ -13,6 +14,8 @@ public var bg:FlxSprite;
 import flixel.util.FlxSpriteUtil;
 
 function create() {
+    FlxG.sound.music.stop();
+
     room = new RoomLoader(Paths.file("data/overworld/room_area1.tmx"));
 
     bg = new FlxSprite().loadGraphic(room.imageLayer.image_path);
@@ -33,6 +36,9 @@ function update(elapsed:Float) {
         exitOverworld();
         FlxG.switchState(new MainMenuState());
     }
+
+    if (player != null)
+        player.update(elapsed); 
 }
 
 function destroy() {
