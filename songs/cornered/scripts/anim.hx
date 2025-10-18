@@ -11,12 +11,12 @@ function postCreate() {
 }
 
 function stepHit(curStep:Int) {
-    if (curStep == 761) {
+    if (curStep == 1273) {
         waveApplied = true;
         waveSpeed = 2.0;
-    } else if (curStep == 889) {
+    } else if (curStep == 1415) {
         waveSpeed = 6.0;
-    } else if (curStep == 1107) {
+    } else if (curStep == 1672) {
         waveApplied = false;
     }
 }

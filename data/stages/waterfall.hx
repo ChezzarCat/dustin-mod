@@ -57,7 +57,7 @@ function postCreate() {
     gfShaderSprite.y = gf.y;
     add(gfShaderSprite);
 
-    customLengthOverride = 199000;
+    customLengthOverride = 220000;
 }
 
 var tottalTimer:Float = FlxG.random.float(50, 300);
@@ -109,7 +109,7 @@ function update(elapsed:Float) {
 
 function stepHit(step:Int) {
     switch (step) {
-        case 740:
+        case 1229:
             FlxTween.tween(bg, {alpha: 0}, 2, {ease: FlxEase.quadOut});
             FlxTween.tween(bg_front, {alpha: 0}, 2, {ease: FlxEase.quadOut});
             FlxTween.tween(wall_left, {alpha: 0}, 2, {ease: FlxEase.quadOut});
@@ -121,7 +121,7 @@ function stepHit(step:Int) {
 
             FlxTween.tween(cracks, {alpha: 0}, 3, {ease: FlxEase.quadOut});
             FlxTween.tween(bones, {alpha: 0}, 3, {ease: FlxEase.quadOut});
-        case 761:
+        case 1255:
             heat.strength = 0.2;
             heat2.strength = 0.3;
             gf.alpha = 1;
@@ -141,20 +141,20 @@ function stepHit(step:Int) {
             FlxTween.tween(cracks, {alpha: 1}, 3.5, {ease: FlxEase.quadOut});
             FlxTween.tween(bones, {alpha: 1}, 3.5, {ease: FlxEase.quadOut});
 
-        case 762:
+        case 1256:
             dad.alpha = 0;
             FlxTween.tween(dad, {alpha: 1}, 3, {ease: FlxEase.quadOut});
 
-        case 787:
+        case 1290:
             // Tween paps sturms to 0.3 alpha
             for (strum in cpuStrums.members)
                 if (strum != null)
                     FlxTween.tween(strum, {alpha: 0.3}, 0.75, {ease: FlxEase.sineInOut});
 
-        case 1095:
+        case 1672:
             FlxTween.tween(dad, {alpha: 0}, 1.5, {ease: FlxEase.quadOut});
 
-        case 1107:
+        case 1687:
             dad.alpha = 1;
             gf.alpha = 1;
             heat.strength = 0;
@@ -163,34 +163,34 @@ function stepHit(step:Int) {
                 if (strum != null) strum.alpha = 1;
             gf.visible = true;
 
-        case 1292 | 2154:
+        case 1913 | 2992:
             stage.stageSprites["ATTACK"].alpha = 1;
             stage.stageSprites["ATTACK"].playAnim("appear");
 
-        case 1304 | 2162:
+        case 1920 | 2997:
             stage.stageSprites["ATTACK"].playAnim("press",true);
 
-        case 1526:
+        case 2212:
             FlxTween.tween(gfShaderSprite, { alpha: 1 }, 1.5);
             FlxTween.tween(blackOverlay, { alpha: 1 }, 1.5);
             FlxG.camera.shake(0.002, 0.3);
 
-        case 1530:
+        case 2215:
             FlxG.camera.shake(0.004, 0.3);
 
-        case 1533:
+        case 2218:
             FlxG.camera.shake(0.006, 0.4);
 
-        case 1536:
+        case 2220:
             FlxG.camera.shake(0.008, 0.4);
 
-        case 1539:
+        case 2222:
             FlxG.camera.shake(0.01, 0.3);
 
-        case 1541:
+        case 2224:
             FlxG.camera.shake(0.015, 0.3);
 
-        case 1543:
+        case 2232:
             FlxG.camera.shake(0.02, 0.5);
             beam.visible = true;
             gfShaderSprite.visible = false;
@@ -205,12 +205,12 @@ function stepHit(step:Int) {
             bg_end.alpha = 1;
             ilumination_end.alpha = 1;
 
-            // Tween the max song length from 199000ms to 307000ms over 3 seconds
+            // Tween the max song length from 3:40 to 5:35 over 3 seconds
             if (maxTimeTween != null) maxTimeTween.cancel();
 
             var duration:Float = 3.0;
             var startLength:Float = customLengthOverride;
-            var endLength:Float = 307000;
+            var endLength:Float = 335000;
 
             maxTimeTween = FlxTween.num(startLength, endLength, duration, {ease: FlxEase.quadOut}, function(val:Float) {
                 customLengthOverride = val;
@@ -218,11 +218,11 @@ function stepHit(step:Int) {
                 customLengthOverride = endLength;
             });
 
-        case 2183:
+        case 3000:
             beam.visible = false;
 
 
-        case 1295:
+        case 1922:
                 FlxG.camera.shake(0.015, 0.4);
 
                 stage.stageSprites["BLASTER_IMPACT1"].alpha = 1;
@@ -240,7 +240,7 @@ function stepHit(step:Int) {
                     });
                 });
 
-        case 2157:
+        case 3000:
                 FlxG.camera.shake(0.02, 0.6);
 
                 stage.stageSprites["BLASTER_IMPACT4"].alpha = 1;
