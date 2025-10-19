@@ -73,7 +73,7 @@ function flipBF() {
     }
     else {
         boyfriend.flipX = true;
-        boyfriend.x = boyfriendOGx - 250;
+        boyfriend.x = boyfriendOGx - 0;
         dustiniconP2.loadGraphicFromSprite(createHealthIcon("inopia-paps", false));
 
         if (Options.colorHealthBar && healthBarColors != null && gf.iconColor != null) {
@@ -96,7 +96,7 @@ function flipBFMAD() {
     }
     else {
         boyfriend.flipX = true;
-        boyfriend.x = boyfriendOGx - 250;
+        boyfriend.x = boyfriendOGx - 850;
         dustiniconP2.loadGraphicFromSprite(createHealthIcon("inopia-mad-paps", false));
 
          if (Options.colorHealthBar && healthBarColors != null && gf.iconColor != null) {

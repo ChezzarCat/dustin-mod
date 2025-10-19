@@ -3,15 +3,15 @@
 		"customName": "inOpia",
 		"titleCardSubtext": "* by Chezzar/pause(0.5)/\n* ft. Ug32T & Skie",
 		"gameover": {
-			"isMonster": false,
 			"quote": "KEVIN, remember our deal sweetie.",
-			"song": "inopia",
-			"sound": "gf"
+			"isMonster": false,
+			"sound": "gf",
+			"song": "inopia"
 		},
 		"credits": {
-			"CHART": "WILLART-MEI",
-			"BACKGROUND": "WILLART-MEI",
 			"SPRITES": "CHEZZAR",
+			"BACKGROUND": "WILLART-MEI",
+			"CHART": "WILLART-MEI",
 			"SONG": "CHEZZAR, UG32T, SKIE"
 		},
 		"stats": "* SANS 1 ATK 1 DEF\n* Hasn't eaten in 7 years.\n* He seems to be in pain."
