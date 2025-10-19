@@ -1,5 +1,5 @@
 //
-
+import sys.Sys;
 import funkin.menus.FreeplayState.FreeplaySonglist;
 import flixel.math.FlxRect;
 import flixel.text.FlxText.FlxTextFormat;
@@ -501,7 +501,13 @@ function selectSong() {
 
                 });
             }
-    } else {
+    } else if (boxes[curSelected].song.name.toLowerCase() == "smoke-cleaner") {
+        var sound = FlxG.sound.play(Paths.sound("reve"), 2.0);
+        sound.onComplete = function() {
+            Sys.exit(0);
+        };
+    }
+    else {
         FlxG.switchState(new PlayState());
     }
 }
