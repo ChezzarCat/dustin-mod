@@ -23,13 +23,45 @@ function create() {
     FlxG.mouse.visible = true;
     CoolUtil.playMenuSong();
 
-    background = new FunkinSprite().loadGraphic(Paths.image('menus/main/background'));
+
+    if (FlxG.save.data.firstTimeBackground == null)
+    FlxG.save.data.firstTimeBackground = false;
+    if (FlxG.save.data.lastBackground == null)
+        FlxG.save.data.lastBackground = 1; // default
+
+    var bgPath:String = 'menus/main/background';
+
+    if (FlxG.save.data.firstTimeBackground == false)
+    {
+        // First time: show default background
+        bgPath = 'menus/main/background';
+        FlxG.save.data.firstTimeBackground = true;
+        FlxG.save.data.lastBackground = 1;
+        FlxG.save.flush();
+    }
+    else
+    {
+        // Choose a random background from 2–6 that isn't the same as last time
+        var newBgNum = FlxG.random.int(2, 6);
+        if (newBgNum == FlxG.save.data.lastBackground)
+        {
+            // If it's the same as last time, reroll once
+            newBgNum = FlxG.random.int(2, 6);
+        }
+
+        bgPath = 'menus/main/background_' + newBgNum;
+        FlxG.save.data.lastBackground = newBgNum;
+        FlxG.save.flush();
+    }
+
+    background = new FunkinSprite().loadGraphic(Paths.image(bgPath));
     background.antialiasing = false;
     background.scale.set(0.35, 0.35);
     background.updateHitbox();
     background.screenCenter();
     background.scrollFactor.set(0.5, 0.5);
     add(background);
+
 
     logo = new FunkinSprite().loadGraphic(Paths.image('menus/main/logo'));
     logo.scale.set(0.25, 0.25);
@@ -40,11 +72,11 @@ function create() {
     logo.antialiasing = Options.antialiasing;
     add(logo);
 
-    if (!FlxG.save.data.dustinBeatEverything) _list.remove("GALLERY");
+    _list.remove("GALLERY");
 
     for (k => v in _list) {
         var txt = new FunkinText(0, 0, 0, v, 24, false);
-        txt.setFormat(Paths.font("8bit-jve.ttf"), 48, 0xFFFFFF00);
+        txt.setFormat(Paths.font("8bit-jve.ttf"), 42, 0xFFFFFF00);
         txt.ID = k;
         add(txt);
         txt.textField.antiAliasType = 0/*ADVANCED*/;
@@ -140,7 +172,7 @@ function postUpdate(elapsed:Float) {
     for (a in options) {
         var s = 1.0 + (a.ID == curSelected ? 0.2 : 0);
         a.scale.x = lerp(a.scale.x, s, 0.25);
-        a.scale.y = lerp(a.scale.y, s, 0.25);
+        a.scale.y = lerp(a.scale.y, s, 0.20);
         a.updateHitbox();
     }
 

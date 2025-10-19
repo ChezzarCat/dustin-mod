@@ -45,6 +45,10 @@ function postCreate() {
     new FlxTimer().start(20, function() {
         FlxTween.tween(freakingLunarBro, {alpha: 0.075, x: freakingLunarBro.x + 25}, 10);
     });
+
+    FlxG.save.data.firstTimeBackground = false;
+    FlxG.save.flush();
+
 }
 
 var __timer:Float = 0;
