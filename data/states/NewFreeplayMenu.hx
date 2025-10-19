@@ -62,6 +62,7 @@ function create() {
         portrait.y = portrait.y + 3;
         add(portrait);
 
+
         #if desktop
         if (name == "genocides" && genocidesText == null) {
             genocidesText = new FunkinText(portrait.x - 100, portrait.y - 130, portrait.width + 200, "If the song is bugged for you, uncheck Options > Miscellaneous > Genocides Swag.");
@@ -71,6 +72,7 @@ function create() {
             genocidesText.textField.sharpness = 400/*MAX ON OPENFL*/;
         }
         #end
+
 
         if (name == "uncreate" && ink == null) {
             ink = new FunkinSprite(0, 0, Paths.image('menus/freeplay/Inks_artWork'));
@@ -159,6 +161,10 @@ function create() {
         nameTxt.setFormat(Paths.font("fallen-down.ttf"), 36, 0xFFFFFFFF);
         nameTxt.setPosition(boxBG.x + boxBG.width / 2 - nameTxt.width / 2, boxBG.y);
         nameTxt.alignment = "center";
+        if (nameTxt.text == "Perseverance") {
+            nameTxt.text = "Possessed";
+        }
+        trace(nameTxt.text);
         add(nameTxt);
 
         var divider = new FunkinSprite().makeSolid(boxBG.width - 40, 2, 0xFFFFFFFF);
